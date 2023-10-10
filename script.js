@@ -39,8 +39,9 @@ function game() {
   }
 }
 function playRound(computerSelection, userSelection) {
+  userWin = false;
+  computerWin = false;
   if (computerSelection === userSelection) {
-    userWin = false;
     let result = "It's a tie!";
     console.log(result);
   } else if (
