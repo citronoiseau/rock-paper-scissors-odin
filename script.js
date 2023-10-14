@@ -12,10 +12,12 @@ function game() {
     }
     let computerSelection = getComputerChoice();
     computerSelection =
-      computerSelection[0].toUpperCase() + computerSelection.slice(1);
+      computerSelection[0].toUpperCase() +
+      computerSelection.slice(1).toLowerCase();
 
     let userSelection = prompt("Rock, Paper or Scissors?");
-    userSelection = userSelection[0].toUpperCase() + userSelection.slice(1);
+    userSelection =
+      userSelection[0].toUpperCase() + userSelection.slice(1).toLowerCase();
 
     console.log("Computer's choice: " + computerSelection);
     console.log("User's choice: " + userSelection);
