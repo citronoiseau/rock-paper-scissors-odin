@@ -3,21 +3,21 @@ let userScore = 0;
 let computerScore = 0;
 let userWin = false;
 let computerWin = false;
-function game() {
-  while (userScore < 5 && computerScore < 5) {
-    function getComputerChoice() {
-      let choiceIndex = Math.floor(Math.random() * choice.length);
-      let computerChoice = choice[choiceIndex];
-      return computerChoice;
-    }
-    let computerSelection = getComputerChoice();
-    computerSelection =
-      computerSelection[0].toUpperCase() +
-      computerSelection.slice(1).toLowerCase();
+let buttonChoice = document.querySelectorAll(".choice");
+let userSelection = ``;
 
-    let userSelection = prompt("Rock, Paper or Scissors?");
-    userSelection =
-      userSelection[0].toUpperCase() + userSelection.slice(1).toLowerCase();
+let restartGame = document.querySelector(".restart");
+
+function game() {
+  buttonChoice.forEach(function (button) {
+    button.addEventListener(`click`, getChoices);
+  });
+}
+
+function getChoices(event) {
+  if (userScore < 5 && computerScore < 5) {
+    userSelection = event.target.textContent;
+    let computerSelection = getComputerChoice();
 
     console.log("Computer's choice: " + computerSelection);
     console.log("User's choice: " + userSelection);
@@ -30,16 +30,21 @@ function game() {
       computerScore++;
     }
     console.log(`User Score: ${userScore}, Computer Score: ${computerScore}`);
-    if (userScore === 5 || computerScore === 5) {
-      break;
+
+    if (userScore === 5) {
+      console.log("User wins the game!");
+    } else if (computerScore === 5) {
+      console.log("Computer wins the game!");
     }
   }
-  if (userScore === 5) {
-    console.log("User wins the game!");
-  } else {
-    console.log("Computer wins the game!");
-  }
 }
+
+function getComputerChoice() {
+  let choiceIndex = Math.floor(Math.random() * choice.length);
+  let computerChoice = choice[choiceIndex];
+  return computerChoice;
+}
+
 function playRound(computerSelection, userSelection) {
   userWin = false;
   computerWin = false;
@@ -61,4 +66,11 @@ function playRound(computerSelection, userSelection) {
   }
 }
 
+function restart() {
+  userScore = 0;
+  computerScore = 0;
+  console.clear();
+  game();
+}
+restartGame.addEventListener(`click`, restart);
 game();
