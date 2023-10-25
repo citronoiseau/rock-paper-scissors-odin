@@ -13,14 +13,33 @@ function game() {
     button.addEventListener(`click`, getChoices);
   });
 }
+const choiceContainer = document.querySelector(`.choiceContainer`);
+const userChoice = document.createElement(`p`);
+const computerChoice = document.createElement(`p`);
+userChoice.textContent = ` `;
+computerChoice.textContent = ` `;
+choiceContainer.appendChild(userChoice);
+choiceContainer.appendChild(computerChoice);
+
+const getResult = document.querySelector(`.roundResult`);
+const result = document.createElement(`p`);
+result.textContent = ``;
+getResult.appendChild(result);
+
+const getScore = document.querySelector(`.scoreContainer`);
+const score = document.createElement(`p`);
+score.textContent = ``;
+const win = document.createElement(`p`);
+win.textContent = ``;
+getScore.appendChild(score);
+getScore.appendChild(win);
 
 function getChoices(event) {
   if (userScore < 5 && computerScore < 5) {
     userSelection = event.target.textContent;
     let computerSelection = getComputerChoice();
-
-    console.log("Computer's choice: " + computerSelection);
-    console.log("User's choice: " + userSelection);
+    userChoice.textContent = `User's choice: ${userSelection}`;
+    computerChoice.textContent = `Computer's choice: ${computerSelection}`;
 
     playRound(computerSelection, userSelection);
 
@@ -29,12 +48,12 @@ function getChoices(event) {
     } else if (computerWin) {
       computerScore++;
     }
-    console.log(`User Score: ${userScore}, Computer Score: ${computerScore}`);
+    score.textContent = `User Score: ${userScore}, Computer Score: ${computerScore}`;
 
     if (userScore === 5) {
-      console.log("User wins the game!");
+      win.textContent = `User wins the game!`;
     } else if (computerScore === 5) {
-      console.log("Computer wins the game!");
+      win.textContent = `Computer wins the game!`;
     }
   }
 }
@@ -49,27 +68,28 @@ function playRound(computerSelection, userSelection) {
   userWin = false;
   computerWin = false;
   if (computerSelection === userSelection) {
-    let result = "It's a tie!";
-    console.log(result);
+    result.textContent = "It's a tie!";
   } else if (
     (userSelection === "Rock" && computerSelection === "Scissors") ||
     (userSelection === "Scissors" && computerSelection === "Paper") ||
     (userSelection === "Paper" && computerSelection === "Rock")
   ) {
     userWin = true;
-    let result = `You won! ${userSelection} beats ${computerSelection}!`;
-    console.log(result);
+    result.textContent = `You won! ${userSelection} beats ${computerSelection}!`;
   } else {
     computerWin = true;
-    let result = `You lose! ${computerSelection} beats ${userSelection}`;
-    console.log(result);
+    result.textContent = `You lose! ${computerSelection} beats ${userSelection}`;
   }
 }
 
 function restart() {
+  win.textContent = ``;
+  computerChoice.textContent = ``;
+  userChoice.textContent = ``;
+  score.textContent = ``;
+  result.textContent = ``;
   userScore = 0;
   computerScore = 0;
-  console.clear();
   game();
 }
 restartGame.addEventListener(`click`, restart);
