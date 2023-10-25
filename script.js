@@ -1,59 +1,70 @@
-let choice = ["Rock", "Paper", "Scissors"];
-let userScore = 0;
-let computerScore = 0;
+let choice = ["Nuclear Bomb", "Human", "Cockroach"];
+let userLives = 5;
+let computerLives = 5;
 let userWin = false;
 let computerWin = false;
-let buttonChoice = document.querySelectorAll(".choice");
-let userSelection = ``;
+let buttonChoice = document.querySelectorAll(".weapon");
 
 let restartGame = document.querySelector(".restart");
+
+const choiceContainer = document.querySelector(`.choiceContainer`);
+const userChoice = document.createElement(`div`);
+let userSelectionPhoto = document.createElement(`img`);
+userSelectionPhoto.classList.add("choicePhoto");
+
+const computerChoice = document.createElement(`div`);
+let computerSelectionPhoto = document.createElement(`img`);
+computerSelectionPhoto.classList.add("choicePhoto");
+
+userChoice.textContent = ` `;
+computerChoice.textContent = ` `;
+choiceContainer.appendChild(userChoice);
+choiceContainer.appendChild(userSelectionPhoto);
+choiceContainer.appendChild(computerChoice);
+choiceContainer.appendChild(computerSelectionPhoto);
+
+const getResult = document.querySelector(`.roundResult`);
+const result = document.createElement(`div`);
+result.textContent = ``;
+getResult.appendChild(result);
+
+const getScore = document.querySelector(`.scoreContainer`);
+const score = document.createElement(`div`);
+score.textContent = ``;
+const win = document.createElement(`div`);
+win.textContent = ``;
+getScore.appendChild(score);
+getScore.appendChild(win);
 
 function game() {
   buttonChoice.forEach(function (button) {
     button.addEventListener(`click`, getChoices);
   });
 }
-const choiceContainer = document.querySelector(`.choiceContainer`);
-const userChoice = document.createElement(`p`);
-const computerChoice = document.createElement(`p`);
-userChoice.textContent = ` `;
-computerChoice.textContent = ` `;
-choiceContainer.appendChild(userChoice);
-choiceContainer.appendChild(computerChoice);
-
-const getResult = document.querySelector(`.roundResult`);
-const result = document.createElement(`p`);
-result.textContent = ``;
-getResult.appendChild(result);
-
-const getScore = document.querySelector(`.scoreContainer`);
-const score = document.createElement(`p`);
-score.textContent = ``;
-const win = document.createElement(`p`);
-win.textContent = ``;
-getScore.appendChild(score);
-getScore.appendChild(win);
 
 function getChoices(event) {
-  if (userScore < 5 && computerScore < 5) {
-    userSelection = event.target.textContent;
+  if (userLives > 0 && computerLives > 0) {
+    userSelection = event.target.alt;
+    userSelectionPhoto.src = event.target.src;
+
     let computerSelection = getComputerChoice();
+    computerSelectionPhoto.src = `img/${computerSelection}.png`;
     userChoice.textContent = `User's choice: ${userSelection}`;
     computerChoice.textContent = `Computer's choice: ${computerSelection}`;
 
     playRound(computerSelection, userSelection);
 
     if (userWin) {
-      userScore++;
+      computerLives--;
     } else if (computerWin) {
-      computerScore++;
+      userLives--;
     }
-    score.textContent = `User Score: ${userScore}, Computer Score: ${computerScore}`;
+    score.textContent = `User Lives: ${userLives}, Computer Lives: ${computerLives}`;
 
-    if (userScore === 5) {
-      win.textContent = `User wins the game!`;
-    } else if (computerScore === 5) {
+    if (userLives === 0) {
       win.textContent = `Computer wins the game!`;
+    } else if (computerLives === 0) {
+      win.textContent = `User wins the game!`;
     }
   }
 }
@@ -70,9 +81,9 @@ function playRound(computerSelection, userSelection) {
   if (computerSelection === userSelection) {
     result.textContent = "It's a tie!";
   } else if (
-    (userSelection === "Rock" && computerSelection === "Scissors") ||
-    (userSelection === "Scissors" && computerSelection === "Paper") ||
-    (userSelection === "Paper" && computerSelection === "Rock")
+    (userSelection === "Nuclear Bomb" && computerSelection === "Human") ||
+    (userSelection === "Human" && computerSelection === "Cockroach") ||
+    (userSelection === "Cockroach" && computerSelection === "Nuclear Bomb")
   ) {
     userWin = true;
     result.textContent = `You won! ${userSelection} beats ${computerSelection}!`;
@@ -88,8 +99,10 @@ function restart() {
   userChoice.textContent = ``;
   score.textContent = ``;
   result.textContent = ``;
-  userScore = 0;
-  computerScore = 0;
+  userSelectionPhoto.src = ``;
+  computerSelectionPhoto.src = ``;
+  userLives = 5;
+  computerLives = 5;
   game();
 }
 restartGame.addEventListener(`click`, restart);

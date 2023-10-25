@@ -4,17 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Turret+Road:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-    <h1>Rock Paper scissors</h1>
-    <p>First to score 5 points wins the game</p>
-    <p>Choose yout weapon!</p>
+    <h1>Nuclear Bomb, Human, Cockroach</h1>
+    <p>Beat your opponent!</p>
+    <p>
+      Nuclear bomb beats human, human beats cockroach, and cockroach beats
+      nuclear bomb.
+    </p>
+    <p>Make your choice!</p>
     <div class="weapons">
-      <button class="choice">Rock</button>
-      <button class="choice">Paper</button>
-      <button class="choice">Scissors</button>
-      <button class="restart">Restart</button>
+      <img
+        class="weapon"
+        id="nuclear"
+        src="img/Nuclear Bomb.png"
+        alt="Nuclear Bomb"
+      />
+      <img class="weapon" src="img/Human.png" alt="Human" />
+      <img class="weapon" src="img/Cockroach.png" alt="Cockroach" />
     </div>
+    <button class="restart">Restart</button>
     <div class="choiceContainer"></div>
     <div class="roundResult"></div>
     <div class="scoreContainer"></div>
