@@ -87,10 +87,10 @@ div {
   max-width: 800px;
 }
 .footer a {
-  color: #5faac7;
+  color: #de4314;
   font-weight: 700;
   transition: all 0.3s;
 }
 .footer a:hover {
-  color: #47c1f1;
+  color: #f7b904;
 }
