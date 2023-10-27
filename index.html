@@ -13,27 +13,55 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <body>
-    <h1>Nuclear Bomb, Human, Cockroach</h1>
+    <h1>
+      <span class="highlightNuclear">Nuclear Bomb,</span>
+      <span class="hightlightHuman">Human,</span>
+      <span class="highlightCockroach">Cockroach</span>
+    </h1>
     <p>Beat your opponent!</p>
     <p>
-      Nuclear bomb beats human, human beats cockroach, and cockroach beats
-      nuclear bomb.
+      <span class="highlightNuclear"> Nuclear bomb </span> beats
+      <span class="hightlightHuman">Human,</span>
+      <span class="hightlightHuman">Human </span> beats
+      <span class="highlightCockroach"> Cockroach,</span>
+      <span class="highlightCockroach"> Cockroach</span> beats
+      <span class="highlightNuclear"> Nuclear bomb </span>
     </p>
     <p>Make your choice!</p>
     <div class="weapons">
-      <img
-        class="weapon"
-        id="nuclear"
-        src="img/Nuclear Bomb.png"
-        alt="Nuclear Bomb"
-      />
+      <img class="weapon" src="img/Nuclear Bomb.png" alt="Nuclear Bomb" />
       <img class="weapon" src="img/Human.png" alt="Human" />
       <img class="weapon" src="img/Cockroach.png" alt="Cockroach" />
     </div>
-    <button class="restart">Restart</button>
+
     <div class="choiceContainer"></div>
     <div class="roundResult"></div>
     <div class="scoreContainer"></div>
+    <button class="restart">Restart</button>
+
+    <div class="footer">
+      The project was coded by
+      <a
+        class="whoCoded-link"
+        href="https://jolly-trifle-0ca0f0.netlify.app/"
+        target="_blank"
+        >Anastasiia
+      </a>
+      and is
+      <a
+        class="whoCoded-link"
+        href="https://github.com/citronoiseau/portfolio-project"
+        target="_blank"
+        >open-sourced on GitHub
+      </a>
+      and hosted on
+      <a
+        class="whoCoded-link"
+        href="https://jolly-trifle-0ca0f0.netlify.app/"
+        target="_blank"
+        >Netlify</a
+      >
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

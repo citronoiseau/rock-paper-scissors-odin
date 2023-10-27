@@ -1,9 +1,25 @@
+body {
+  margin: 0;
+  background-image: url(img/background.jpg);
+  color: white;
+}
 h1 {
   text-align: center;
-  border-bottom: 2px solid green;
   font-family: "Bungee Shade", sans-serif;
+  margin-top: 0;
 }
-p {
+
+.highlightNuclear {
+  color: #1452c6;
+}
+.hightlightHuman {
+  color: #eb9515;
+}
+.highlightCockroach {
+  color: #de4314;
+}
+p,
+div {
   text-align: center;
   font-family: "Turret Road", sans-serif;
   font-weight: 500;
@@ -11,22 +27,70 @@ p {
 }
 
 .weapons {
-  margin-top: 40px;
+  margin: 40px;
   display: flex;
   justify-content: center;
   gap: 40px;
+  flex-wrap: wrap;
 }
 
 .weapon {
   width: 200px;
   height: auto;
-  transition: transform 0.3s;
+  transition: all 0.3s;
 }
 .weapon:hover {
   transform: scale(1.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.choiceContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+.userChoice,
+.computerChoice {
+  width: 300px;
+  height: auto;
+}
+
+.userChoice img,
+.computerChoice img {
+  padding: 10px;
 }
 
 .choicePhoto {
   width: 100px;
   height: auto;
+}
+.restart {
+  margin: 30px auto;
+  font-family: "Turret Road", sans-serif;
+  font-size: 24px;
+  display: none;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  transition: all 0.3s;
+  color: white;
+  background-color: #f7b904;
+}
+.restart:hover {
+  background-color: #5faac7;
+}
+
+.footer {
+  padding: 20px;
+  background-color: rgba(249, 249, 249, 0.2);
+  backdrop-filter: blur(10px);
+  margin: 20px auto;
+  max-width: 800px;
+}
+.footer a {
+  color: #5faac7;
+  font-weight: 700;
+  transition: all 0.3s;
+}
+.footer a:hover {
+  color: #47c1f1;
 }

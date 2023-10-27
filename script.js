@@ -8,20 +8,27 @@ let buttonChoice = document.querySelectorAll(".weapon");
 let restartGame = document.querySelector(".restart");
 
 const choiceContainer = document.querySelector(`.choiceContainer`);
+const userChoiceContainer = document.createElement(`div`);
+userChoiceContainer.classList.add("userChoice");
 const userChoice = document.createElement(`div`);
 let userSelectionPhoto = document.createElement(`img`);
 userSelectionPhoto.classList.add("choicePhoto");
 
+const computerChoiceContainer = document.createElement(`div`);
+computerChoiceContainer.classList.add("computerChoice");
 const computerChoice = document.createElement(`div`);
 let computerSelectionPhoto = document.createElement(`img`);
 computerSelectionPhoto.classList.add("choicePhoto");
 
 userChoice.textContent = ` `;
 computerChoice.textContent = ` `;
-choiceContainer.appendChild(userChoice);
-choiceContainer.appendChild(userSelectionPhoto);
-choiceContainer.appendChild(computerChoice);
-choiceContainer.appendChild(computerSelectionPhoto);
+userChoiceContainer.appendChild(userChoice);
+userChoiceContainer.appendChild(userSelectionPhoto);
+computerChoiceContainer.appendChild(computerChoice);
+computerChoiceContainer.appendChild(computerSelectionPhoto);
+
+choiceContainer.appendChild(userChoiceContainer);
+choiceContainer.appendChild(computerChoiceContainer);
 
 const getResult = document.querySelector(`.roundResult`);
 const result = document.createElement(`div`);
@@ -49,10 +56,11 @@ function getChoices(event) {
 
     let computerSelection = getComputerChoice();
     computerSelectionPhoto.src = `img/${computerSelection}.png`;
-    userChoice.textContent = `User's choice: ${userSelection}`;
-    computerChoice.textContent = `Computer's choice: ${computerSelection}`;
+    userChoice.textContent = `User's choice: `;
+    computerChoice.textContent = `Computer's choice: `;
 
     playRound(computerSelection, userSelection);
+    restartGame.style.display = "block";
 
     if (userWin) {
       computerLives--;
@@ -103,7 +111,9 @@ function restart() {
   computerSelectionPhoto.src = ``;
   userLives = 5;
   computerLives = 5;
+  restartGame.style.display = "none";
   game();
 }
 restartGame.addEventListener(`click`, restart);
+
 game();
